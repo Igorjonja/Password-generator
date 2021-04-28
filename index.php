@@ -15,10 +15,6 @@
     </fieldset>
 </form>
 
-
-
-
-
 <?php
 //input data
 $numOfsSymbol=intval($_POST["num_of_symbols"]);
@@ -28,27 +24,20 @@ $case1=$_POST["numberNo10"];
 $case2=$_POST["Bletters"];
 $case3=$_POST["Sletters"];
 
-
 function gernerate_pass($case1, $case2, $case3,$numOfsSymbol){
     $caseNumbers = "0123456789";
     $caseBigLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     $caseSmallLetters = "abcdefghijklmnopqrstuvwxyz";
     $keySpace="";
 
-
     $characters = "";
     $condition = [$case1, $case2, $case3];
-
 
     if($condition[0]=="true"){$keySpace.=$caseNumbers;}
     if($condition[1]=="true"){$keySpace.=$caseBigLetters; }
     if($condition[2]=="true"){$keySpace.=$caseSmallLetters;}
     $input_length=strlen($keySpace);
     if($input_length>=$numOfsSymbol){
-
-
-
-
 
         for ($i = 0; $i < $numOfsSymbol;) {
 
@@ -73,8 +62,7 @@ function gernerate_pass($case1, $case2, $case3,$numOfsSymbol){
                 }
             }
 
-        }
-        echo "password : $characters";
+        }echo "password : $characters";
     }else{echo"Please select more cases or insert more characters";}
 
 }
