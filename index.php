@@ -15,41 +15,61 @@
     </fieldset>
 </form>
 
+
+
+
+
 <?php
 //input data
-$numOfsSymbol=intval($_POST["num_of_symbols"]);
-//echo "<br>"."Input numbers of symbol: ";//TEST
+$numOfSymbol=intval($_POST["num_of_symbols"]);
+//echo "<br>"."Input numbers of
+/
+
+
+
+
+ symbol: ";//TEST
 //echo "<br>".var_dump($_POST["num_of_symbols"])."</br>";//TEST input data
 $case1=$_POST["numberNo10"];
 $case2=$_POST["Bletters"];
 $case3=$_POST["Sletters"];
 
-function gernerate_pass($case1, $case2, $case3,$numOfsSymbol){
+
+function gernerate_pass($case1, $case2, $case3,$numOfSymbol){
     $caseNumbers = "0123456789";
     $caseBigLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     $caseSmallLetters = "abcdefghijklmnopqrstuvwxyz";
     $keySpace="";
-
+    $pattern="";
+    $replacement="";
     $characters = "";
     $condition = [$case1, $case2, $case3];
 
-    if($condition[0]=="true"){$keySpace.=$caseNumbers;}
-    if($condition[1]=="true"){$keySpace.=$caseBigLetters; }
-    if($condition[2]=="true"){$keySpace.=$caseSmallLetters;}
-    $input_length=strlen($keySpace);
-    if($input_length>=$numOfsSymbol){
 
-        for ($i = 0; $i < $numOfsSymbol;) {
+    if($condition[0]=="true"){$pattern.="01"; $keySpace.=$caseNumbers;}
+    if($condition[1]=="true"){$pattern.="Oo"; $keySpace.=$caseBigLetters;}
+    if($condition[2]=="true"){$pattern.="l"; $keySpace.=$caseSmallLetters;}
+//    var_dump("/[".$pattern."]/");
+    $keySpace=preg_replace("/[".$pattern."]/","",$keySpace);
+    $input_length=strlen($keySpace); // kolihestvo simvolov
+
+// var_dump($keySpace);
+
+
+    if($input_length>=$numOfSymbol){          //key space length should be greater then input numbers
+
+        for ($i = 0; $i < $numOfSymbol;) { // characters counter
 
             $random_character = $keySpace[random_int(0, $input_length-1)];
 
             if (strpos($characters, $random_character) === false) { //same symbol searching
 
-                if ($condition[0] === 'true' & $random_character !== 0 & $random_character !== 1) //Numbers without 0 and 1
+                if ($condition[0] === 'true' & $random_character !== "0" & $random_character !== "1")//Numbers without 0 and 1
                 {
                     $characters .= $random_character;
                     $i++;
-                }elseif($condition[1] === 'true' & $random_character !== "o" & $random_character != "O") //Big letters without o and O
+
+                } elseif($condition[1] === 'true' & $random_character !== "o" & $random_character !== "O") //Big letters without o and O
                 {
                     $characters .= $random_character;
                     $i++;
@@ -62,11 +82,13 @@ function gernerate_pass($case1, $case2, $case3,$numOfsSymbol){
                 }
             }
 
-        }echo "password : $characters";
+        }
+         echo"password : "; var_dump($characters);
     }else{echo"Please select more cases or insert more characters";}
 
 }
-gernerate_pass($case1, $case2, $case3, $numOfsSymbol);
+
+gernerate_pass($case1, $case2, $case3, $numOfSymbol);
 
 
 ?>
