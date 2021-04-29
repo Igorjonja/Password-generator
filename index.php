@@ -23,12 +23,7 @@
 //input data
 $numOfSymbol=intval($_POST["num_of_symbols"]);
 //echo "<br>"."Input numbers of
-/
-
-
-
-
- symbol: ";//TEST
+// symbol: ";//TEST
 //echo "<br>".var_dump($_POST["num_of_symbols"])."</br>";//TEST input data
 $case1=$_POST["numberNo10"];
 $case2=$_POST["Bletters"];
