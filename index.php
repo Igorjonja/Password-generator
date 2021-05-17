@@ -1,6 +1,3 @@
-
-
-
 <form action="index.php" method="post">
     <fieldset>
         <p>Type number of symbols</p>
@@ -45,7 +42,7 @@ function gernerate_pass($case1, $case2, $case3,$numOfSymbol){
     if($condition[1]=="true"){$pattern.="Oo"; $keySpace.=$caseBigLetters;}
     if($condition[2]=="true"){$pattern.="l"; $keySpace.=$caseSmallLetters;}
 //    var_dump("/[".$pattern."]/");
-    $keySpace=preg_replace("/[".$pattern."]/","",$keySpace);
+    $keySpace=preg_replace("/".$pattern."/","",$keySpace);
     $input_length=strlen($keySpace); // kolihestvo simvolov
 
 // var_dump($keySpace);
@@ -78,7 +75,7 @@ function gernerate_pass($case1, $case2, $case3,$numOfSymbol){
             }
 
         }
-         echo"password : "; var_dump($characters);
+        echo"password : ".$characters;
     }else{echo"Please select more cases or insert more characters";}
 
 }
